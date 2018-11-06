@@ -23,5 +23,8 @@
 </script>
 
 <style scoped>
+  .container {
+    margin: 20px 0;
+  }
 
 </style>

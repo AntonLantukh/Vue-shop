@@ -1,19 +1,20 @@
 <template>
   <div class="container">
-    <div class="row">
-      <product></product>
+    <div class="row justify-content-between">
+      <products></products>
     </div>
   </div>
 </template>
 
 <script>
-  import product from './Product';
+  import products from './Products';
+
   export default {
+    name: 'Main-body.vue',
     components: {
-      product
-    },
-    name: "Product"
+      products
     }
+  }
 </script>
 
 <style scoped>
