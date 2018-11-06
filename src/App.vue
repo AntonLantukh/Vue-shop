@@ -1,12 +1,8 @@
 <template>
   <div id="app">
-    <div class="container">
-      <div class="row">
-        <main-header></main-header>
-        <main-body></main-body>
-        <main-footer></main-footer>
-      </div>
-    </div>
+    <main-header></main-header>
+    <main-body></main-body>
+    <main-footer></main-footer>
   </div>
 </template>
 

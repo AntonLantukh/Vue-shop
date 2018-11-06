@@ -2,10 +2,10 @@
   <div class="container">
     <div class="row">
       <b-nav fill pills>
-        <b-nav-item active>Главная</b-nav-item>
-        <b-nav-item>Продукты</b-nav-item>
-        <b-nav-item>Корзина</b-nav-item>
-        <b-nav-item>Контакты</b-nav-item>
+        <b-nav-item active>Main</b-nav-item>
+        <b-nav-item>Products</b-nav-item>
+        <b-nav-item>Cart</b-nav-item>
+        <b-nav-item>Contacts</b-nav-item>
       </b-nav>
     </div>
   </div>

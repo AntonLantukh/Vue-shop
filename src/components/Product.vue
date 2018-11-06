@@ -1,14 +1,14 @@
 <template>
   <div>
-    <b-card title="Card Title"
+    <b-card :title="card.name"
             img-src="https://picsum.photos/600/300/?image=25"
             img-alt="Image"
             img-top
             tag="article"
             style="max-width: 20rem;"
-            class="mb-2">
+            class="product__card">
       <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk of the card's content.
+        {{card.description}}
       </p>
       <b-button href="#" variant="primary">Go somewhere</b-button>
     </b-card>
@@ -20,14 +20,25 @@
   import bButton from 'bootstrap-vue/es/components/button/button';
 
   export default {
+      name: "Product",
+
       components: {
         bCard,
         bButton
       },
-      name: "Product"
+
+      props: ['card']
+
     }
 </script>
 
 <style scoped>
+  .product__card {
+    margin: 0 20px 20px 0;
+  }
+
+  .product__card:nth-child(3n) {
+    margin-right: 0;
+  }
 
 </style>
