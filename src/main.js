@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 
 import App from './App.vue';
 import routes from './routes';
-import store from './store';
+import vuexStore from './store';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
@@ -14,12 +14,12 @@ const router = new VueRouter({
   routes
 });
 
-const vuexStore = new Vuex.Store(store);
+const store = new Vuex.Store(vuexStore);
 
 new Vue({
   el: '#app',
   router,
-  vuexStore,
+  store,
   render: h => h(App)
 });
 

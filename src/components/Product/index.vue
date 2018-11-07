@@ -12,11 +12,14 @@
           {{card.description}}
         </p>
         <div class="wrapper">
-          <b-button href="#" variant="success">Add to cart</b-button>
-          <input type="number" value="1">
+          <div class="wrapper__button">
+            <b-button v-if="!disableButton" variant="success" @click="addProduct">Add to cart</b-button>
+            <pulse-loader v-else ></pulse-loader>
+          </div>
+          <input type="number" v-model="count">
           <b-button-group size="sm">
-            <b-button>-</b-button>
-            <b-button variant="primary">+</b-button>
+            <b-button @click="onInputMinusHandler">-</b-button>
+            <b-button @click="onInputPlusHandler" variant="primary">+</b-button>
           </b-button-group>
         </div>
     </b-card>
@@ -27,19 +30,59 @@
   import bCard from 'bootstrap-vue/es/components/card/card';
   import bButton from 'bootstrap-vue/es/components/button/button';
   import bButtonGroup from 'bootstrap-vue/es/components/button-group/button-group';
+  import pulseLoader from 'vue-spinner/src/PulseLoader.vue'
+  import { mapActions } from 'vuex'
+  import { mapState } from 'vuex';
 
   export default {
-      name: "Product",
+    name: "Product",
 
-      components: {
-        bCard,
-        bButton,
-        bButtonGroup
+    components: {
+      bCard,
+      bButton,
+      bButtonGroup,
+      pulseLoader
+    },
+
+    props: ['card'],
+
+    data() {
+      return {
+        count: 1
+      }
+    },
+
+    computed: {
+      ...mapState([
+        'isFetching'
+      ]),
+
+      disableButton() {
+        return this.isFetching.status && this.isFetching.id === this.card['id_num']
+      }
+    },
+
+    methods: {
+      ...mapActions([
+        'addToCart'
+      ]),
+
+      onInputPlusHandler() {
+        this.count++;
       },
 
-      props: ['card']
+      onInputMinusHandler() {
+        if (this.count === 1) {
+          return;
+        }
+        this.count--
+      },
 
+      addProduct() {
+        this.addToCart({id: this.card['id_num'], count: this.count})
+      }
     }
+  }
 </script>
 
 <style scoped>
@@ -67,6 +110,10 @@
   .wrapper {
     display: flex;
     justify-content: space-between;
+  }
+
+  .wrapper__button {
+    width: 100px;
   }
 
   input {

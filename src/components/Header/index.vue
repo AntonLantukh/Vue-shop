@@ -7,7 +7,13 @@
         </div>
         <navigation class="col-6"></navigation>
         <div class="col-3">
-          <h3>Cart</h3>
+          <div class="row row__count">
+            <h3>Cart</h3>
+            <div>
+              <span>Count: {{getTotalCount}} pcs.</span>
+              <span>Total: {{getTotalSum}} USD</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -16,11 +22,18 @@
 
 <script>
   import navigation from '../Navigation';
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'Main-header',
     components: {
       navigation
+    },
+
+    computed: {
+      ...mapGetters([
+        'getTotalCount', 'getTotalSum'
+      ])
     }
   }
 </script>
@@ -42,8 +55,17 @@
     align-items: baseline;
   }
 
+  .row__count {
+    align-items: center;
+  }
+
   h3 {
     margin: 0;
+  }
+
+  span {
+    display: block;
+    margin-left: 20px;
   }
 
 </style>
