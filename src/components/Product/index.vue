@@ -7,11 +7,18 @@
             tag="article"
             style="max-width: 20rem;"
             class="product__card">
-      <p class="card-text">
-        {{card.description}}
-      </p>
-      <b-button href="#" variant="success">Add to cart</b-button>
-      <b-button href="#" variant="primary">Go somewhere</b-button>
+        <span class="product__price">{{card.price}} USD</span>
+        <p class="card-text">
+          {{card.description}}
+        </p>
+        <div class="wrapper">
+          <b-button href="#" variant="success">Add to cart</b-button>
+          <input type="number" value="1">
+          <b-button-group size="sm">
+            <b-button>-</b-button>
+            <b-button variant="primary">+</b-button>
+          </b-button-group>
+        </div>
     </b-card>
   </div>
 </template>
@@ -19,13 +26,15 @@
 <script>
   import bCard from 'bootstrap-vue/es/components/card/card';
   import bButton from 'bootstrap-vue/es/components/button/button';
+  import bButtonGroup from 'bootstrap-vue/es/components/button-group/button-group';
 
   export default {
       name: "Product",
 
       components: {
         bCard,
-        bButton
+        bButton,
+        bButtonGroup
       },
 
       props: ['card']
@@ -45,6 +54,24 @@
 
   .product__card:nth-child(3n) {
     margin-right: 0;
+  }
+
+  .product__price {
+    margin-left: 80px;
+  }
+
+  .card-title {
+    display: inline-block;
+  }
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  input {
+    width: 40px;
+    padding: 5px;
   }
 
   img {

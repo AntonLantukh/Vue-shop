@@ -2,10 +2,10 @@
   <div class="container">
     <div class="row">
       <b-nav fill pills>
-        <b-nav-item active>Main</b-nav-item>
-        <b-nav-item>Products</b-nav-item>
-        <b-nav-item>Cart</b-nav-item>
-        <b-nav-item>Contacts</b-nav-item>
+          <b-nav-item :to="{ name: 'main'}">Main</b-nav-item>
+          <b-nav-item :to="{ name: 'products'}">Products</b-nav-item>
+          <b-nav-item :to="{ name: 'cart'}">Cart</b-nav-item>
+          <b-nav-item :to="{ name: 'contacts'}">Contacts</b-nav-item>
       </b-nav>
     </div>
   </div>

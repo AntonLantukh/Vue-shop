@@ -1,8 +1,23 @@
 
 const store = {
   state: {
-    cart: '',
-    name: ''
+    cart: {
+
+    },
+  },
+
+  getters() {
+
+  },
+
+  mutations() {
+
+  },
+
+  actions: {
+    addProduct(context) {
+
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row justify-content-between">
-      <products></products>
+      <router-view></router-view>
     </div>
   </div>
 </template>

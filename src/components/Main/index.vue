@@ -1,5 +1,5 @@
 <template>
-  <div clas="container">
+  <div class="container">
     <div class="row">
       <h3>Phone Shop</h3>
       <p>
@@ -32,5 +32,7 @@
 </script>
 
 <style scoped>
-
+  .container {
+    width: 900px;
+  }
 </style>
