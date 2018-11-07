@@ -7,10 +7,10 @@
 </template>
 
 <script>
-  import products from './Products';
+  import products from '../Products/';
 
   export default {
-    name: 'Main-body.vue',
+    name: 'Main-body',
     components: {
       products
     }

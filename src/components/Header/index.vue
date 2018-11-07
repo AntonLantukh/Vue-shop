@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import navigation from './Navigation';
+  import navigation from '../Navigation';
 
   export default {
     name: 'Main-header',

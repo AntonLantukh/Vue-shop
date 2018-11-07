@@ -7,9 +7,9 @@
 </template>
 
 <script>
-  import mainHeader from './components/Main-header';
-  import mainFooter from './components/Main-footer';
-  import mainBody from './components/Main-body';
+  import mainHeader from './components/Header';
+  import mainFooter from './components/Footer';
+  import mainBody from './components/Body';
 
   export default {
   name: 'app',
