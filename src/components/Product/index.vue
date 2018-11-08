@@ -8,15 +8,19 @@
             style="max-width: 20rem;"
             class="product__card">
         <span class="product__price">{{card.price}} USD</span>
+        <b-badge v-if="getProductIsInCart(card['id_num'])" class="product__badge" variant="info">
+          In cart: {{getProductCountInCart(card['id_num'])}}
+        </b-badge>
         <p class="card-text">
           {{card.description}}
         </p>
         <div class="wrapper">
           <div class="wrapper__button">
-            <b-button v-if="!disableButton" variant="success" @click="addProduct">Add to cart</b-button>
+            <b-button v-if="!disableButton" variant="success" @click="addProduct">Add</b-button>
             <pulse-loader v-else ></pulse-loader>
+            <b-button v-if="getProductIsInCart(card['id_num'])" variant="warning" @click="removeProduct">Remove</b-button>
           </div>
-          <input type="number" v-model="count">
+          <input type="number" v-model="count" @input="onInputHandler($event)"/>
           <b-button-group size="sm">
             <b-button @click="onInputMinusHandler">-</b-button>
             <b-button @click="onInputPlusHandler" variant="primary">+</b-button>
@@ -28,17 +32,18 @@
 
 <script>
   import bCard from 'bootstrap-vue/es/components/card/card';
+  import bBadge from 'bootstrap-vue/es/components/badge/badge';
   import bButton from 'bootstrap-vue/es/components/button/button';
   import bButtonGroup from 'bootstrap-vue/es/components/button-group/button-group';
   import pulseLoader from 'vue-spinner/src/PulseLoader.vue'
-  import { mapActions } from 'vuex'
-  import { mapState } from 'vuex';
+  import { mapActions, mapState, mapGetters } from 'vuex'
 
   export default {
     name: "Product",
 
     components: {
       bCard,
+      bBadge,
       bButton,
       bButtonGroup,
       pulseLoader
@@ -57,6 +62,10 @@
         'isFetching'
       ]),
 
+      ...mapGetters([
+        'getProductIsInCart', 'getProductCountInCart'
+      ]),
+
       disableButton() {
         return this.isFetching.status && this.isFetching.id === this.card['id_num']
       }
@@ -64,8 +73,14 @@
 
     methods: {
       ...mapActions([
-        'addToCart'
+        'addToCart', 'removeFromCart'
       ]),
+
+      onInputHandler(evt) {
+        if (this.count < 0) {
+          this.count = 0;
+        }
+      },
 
       onInputPlusHandler() {
         this.count++;
@@ -80,6 +95,10 @@
 
       addProduct() {
         this.addToCart({id: this.card['id_num'], count: this.count})
+      },
+
+      removeProduct() {
+        this.removeFromCart({id: this.card['id_num']})
       }
     }
   }
@@ -87,6 +106,7 @@
 
 <style scoped>
   .product__card {
+    position: relative;
     margin: 0 20px 20px 0;
   }
 
@@ -100,25 +120,47 @@
   }
 
   .product__price {
-    margin-left: 80px;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-left: 70px;
   }
 
-  .card-title {
-    display: inline-block;
+  .product__badge {
+    font-size: 15px;
+    position: absolute;
+    bottom: 60px;
+    right: 20px;
+    padding: 5px 3px;
+  }
+
+  .cart {
+    margin-left: 30px;
   }
 
   .wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
   }
 
   .wrapper__button {
+    display: flex;
     width: 100px;
+  }
+
+  .btn {
+    margin-right: 2px;
+  }
+
+  h4 {
+    display: inline-block;
   }
 
   input {
     width: 40px;
-    padding: 5px;
+    padding: 4px 7px;
+    margin-left: auto;
+    margin-right: 5px;
   }
 
   img {

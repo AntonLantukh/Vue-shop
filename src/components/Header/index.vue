@@ -3,12 +3,12 @@
     <div class="container">
       <div class="row justify-content-around">
         <div class="col-3">
-          <h3>Phone shop</h3>
+          <img :src="pathLogo" alt="logo">
         </div>
         <navigation class="col-6"></navigation>
         <div class="col-3">
           <div class="row row__count">
-            <h3>Cart</h3>
+            <img :src="pathCart" alt="cart">
             <div>
               <span>Count: {{getTotalCount}} pcs.</span>
               <span>Total: {{getTotalSum}} USD</span>
@@ -30,6 +30,13 @@
       navigation
     },
 
+    data() {
+      return {
+        pathLogo: './src/assets/logo.png',
+        pathCart: './src/assets/cart.jpg'
+      }
+    },
+
     computed: {
       ...mapGetters([
         'getTotalCount', 'getTotalSum'
@@ -42,12 +49,10 @@
   .wrapper {
     width: 100%;
     margin-bottom: 30px;
-    background-color: aliceblue;
   }
 
   .container {
     margin: 0 auto 0 auto;
-    padding: 10px;
     vertical-align: center;
   }
 
@@ -61,6 +66,11 @@
 
   h3 {
     margin: 0;
+  }
+
+  img {
+    width: 160px;
+    height: 50px;
   }
 
   span {

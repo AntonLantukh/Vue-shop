@@ -49,7 +49,7 @@
             name: 'iPhone X',
             description: 'The iPhone X is Apples new flagship 10th anniversary `' +
               'iPhone featuring a 5.8-inch OLED display, facial recognition ' +
-              'and 3D camera ',
+              'and 3D cam ',
             price: 1000,
             src: './src/assets/iphone_x.jpeg'
           },
