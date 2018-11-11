@@ -15,11 +15,11 @@
           {{card.description}}
         </p>
         <div class="wrapper">
-          <div class="wrapper__button">
-            <b-button v-if="!disableButton" variant="success" @click="addProduct">Add</b-button>
-            <pulse-loader v-else ></pulse-loader>
+          <div class="wrapper__button" v-if="!disableButton">
+            <b-button variant="success" @click="addProduct">Add</b-button>
             <b-button v-if="getProductIsInCart(card['id_num'])" variant="warning" @click="removeProduct">Remove</b-button>
           </div>
+          <pulse-loader v-else ></pulse-loader>
           <input type="number" v-model="count" @input="onInputHandler($event)"/>
           <b-button-group size="sm">
             <b-button @click="onInputMinusHandler">-</b-button>
@@ -131,10 +131,6 @@
     bottom: 60px;
     right: 20px;
     padding: 5px 3px;
-  }
-
-  .cart {
-    margin-left: 30px;
   }
 
   .wrapper {

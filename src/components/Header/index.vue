@@ -1,13 +1,13 @@
 <template>
-  <div class="wrapper">
-    <div class="container">
+  <div class="header">
+    <div class="container header__container">
       <div class="row justify-content-around">
         <div class="col-3">
-          <img :src="pathLogo" alt="logo">
+          <img class="header__logo" :src="pathLogo" alt="logo">
         </div>
-        <navigation class="col-6"></navigation>
+        <navigation class="col-6 header__navigation"></navigation>
         <div class="col-3">
-          <div class="row row__count">
+          <div class="row header__count">
             <img :src="pathCart" alt="cart">
             <div>
               <span>Count: {{getTotalCount}} pcs.</span>
@@ -33,7 +33,7 @@
     data() {
       return {
         pathLogo: './src/assets/logo.png',
-        pathCart: './src/assets/cart.jpg'
+        pathCart: './src/assets/cart.png'
       }
     },
 
@@ -46,21 +46,21 @@
 </script>
 
 <style scoped>
-  .wrapper {
+  .header {
     width: 100%;
     margin-bottom: 30px;
   }
 
-  .container {
+  .header__container {
     margin: 0 auto 0 auto;
     vertical-align: center;
   }
 
-  .row {
-    align-items: baseline;
+  .header__navigation {
+    padding-top: 10px;
   }
 
-  .row__count {
+  .header__count {
     align-items: center;
   }
 
@@ -68,9 +68,9 @@
     margin: 0;
   }
 
-  img {
-    width: 160px;
-    height: 50px;
+  .header__logo {
+    width: 190px;
+    height: 60px;
   }
 
   span {
